@@ -1,0 +1,57 @@
+#include <Servo.h>
+#include <SoftwareSerial.h>
+
+#define RE_DE 2
+SoftwareSerial rs485(10, 11); 
+
+Servo gripper;
+const int gripperPin = 9;
+
+String incoming = "";
+
+void setup() {
+  pinMode(RE_DE, OUTPUT);
+  digitalWrite(RE_DE, LOW);  
+
+  Serial.begin(9600);
+  rs485.begin(9600);
+
+  gripper.attach(gripperPin);
+  gripper.write(90); 
+
+  delay(100);
+}
+
+void loop() {
+  while (rs485.available()) {
+    char ch = rs485.read();
+    if (ch == '\n') {
+      processCommand(incoming);
+      incoming = "";  
+    } else {
+      incoming += ch;
+    }
+  }
+}
+
+void processCommand(String cmd) {
+  cmd.trim();
+  Serial.print("Received command: ");
+  Serial.println(cmd);
+
+  if (cmd == "open") {
+    gripper.write(180);  
+  } else if (cmd == "close") {
+    gripper.write(0);    
+  } else if (cmd == "stop") {
+    gripper.write(90);   
+  }
+
+  // sends echo back
+  digitalWrite(RE_DE, HIGH);
+  delay(1);
+  rs485.print("Received: ");
+  rs485.println(cmd);
+  delay(5);
+  digitalWrite(RE_DE, LOW);
+}
