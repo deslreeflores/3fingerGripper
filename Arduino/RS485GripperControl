@@ -6,27 +6,30 @@ SoftwareSerial rs485(10, 11);
 
 Servo gripper;
 const int gripperPin = 9;
-
 String incoming = "";
 
 void setup() {
   pinMode(RE_DE, OUTPUT);
+  // (RO active)
   digitalWrite(RE_DE, LOW);  
 
-  Serial.begin(9600);
-  rs485.begin(9600);
+  Serial.begin(9600);       
+  rs485.begin(9600);         
 
   gripper.attach(gripperPin);
+   // Start in neutral
   gripper.write(90); 
 
-  delay(100);
+  Serial.println("Gripper ready. Waiting for command...");
 }
 
 void loop() {
   while (rs485.available()) {
     char ch = rs485.read();
+
     if (ch == '\n') {
       processCommand(incoming);
+      // Reset buffer
       incoming = "";  
     } else {
       incoming += ch;
@@ -36,22 +39,25 @@ void loop() {
 
 void processCommand(String cmd) {
   cmd.trim();
-  Serial.print("Received command: ");
-  Serial.println(cmd);
+  cmd.toLowerCase();
+
+  Serial.print("Received command: '");
+  Serial.print(cmd);
+  Serial.println("'");
 
   if (cmd == "open") {
-    gripper.write(180);  
+    Serial.println("Opening gripper...");
+    gripper.write(180);
+      // Fully open
   } else if (cmd == "close") {
-    gripper.write(0);    
+    Serial.println("Closing gripper...");
+    gripper.write(0);   
+     // Fully closed
   } else if (cmd == "stop") {
-    gripper.write(90);   
+    Serial.println("Stopping gripper...");
+    gripper.write(90); 
+   // Neutral
+  } else {
+    Serial.println("Command unknown.");
   }
-
-  // sends echo back
-  digitalWrite(RE_DE, HIGH);
-  delay(1);
-  rs485.print("Received: ");
-  rs485.println(cmd);
-  delay(5);
-  digitalWrite(RE_DE, LOW);
 }
