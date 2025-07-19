@@ -112,7 +112,7 @@ ros2 topic pub /gripper_command std_msgs/String "data: 'open'"
 ros2 topic pub /gripper_command std_msgs/String "data: 'close'"
 ```
 # IR REMOTE-CONTROLLED GRIPPER
-This section will explain how to control the gripper using an IR sensor with a paired IR Remote. Because of early problems with integrating a pressure sensor, the remote was added as a way to control the dexterity of the gripper
+This section will explain how to control the gripper using an IR sensor with a paired IR Remote. Because of early challenges with integrating a pressure sensor, the remote was added as an alternative method to control the dexterity of the gripper
 ### Hardware Components: 
 - Arduino Uno
 - IR Reciever Module
