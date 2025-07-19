@@ -54,7 +54,7 @@ The system bridges a gap in robotics research by providing a gripper that:
 ### 2. Arduino Firmware
 1. Open Arduino IDE
 2. Connect to Arduino Uno in 'COM4' port
-3. Flash sketch to Arduino Uno
+3. Flash **RS485GripperControl** sketch to Arduino Uno
 
 # ROS2 SOFTWARE
 ### Requirements: 
@@ -96,7 +96,7 @@ ros2 pkg create --build-type ament_python gripper_commander
 ```bash
 code .
 ```
-This will open Visual Studios where you can navigate packages and python scripts. Add serial_node.py 
+This will open Visual Studios where you can navigate packages and python scripts. Create python script and add code for **serial_node.py**
 # STEP 5: Build Package inside ros2_ws
 ```bash
 colcon build --packages-select gripper_commander
@@ -136,11 +136,11 @@ This section will explain how to control the gripper using an IR sensor with a p
 #### ARDUINO LIBRARIES TO INSTALL:
 IRremote by Armin Joachimsmeyer
 # STEP 1: Find Remote Codes
-1. Upload remoteCodes.ino sketch.
+1. Upload **remoteCodes.ino** sketch.
 2. Open Arduino Serial Monitor
 3. Set Baud rate to 9600
 4. Designate 2 buttons to trigger "Open" and "Close" and press them
-5. Write their Hex values and replace their values in the Arduino Sketch remoteControlGripper.ino
+5. Write their Hex values and replace their values in Arduino Sketch **remoteControlGripper.ino**
 # STEP 2: Upload Sketch
 1. Upload finalized code with hex values to Arduino.
 2. Press "open" and "close" buttons to trigger servo and gripper accordingly
