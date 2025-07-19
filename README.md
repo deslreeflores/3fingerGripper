@@ -136,11 +136,11 @@ This section will explain how to control the gripper using an IR sensor with a p
 #### ARDUINO LIBRARIES TO INSTALL:
 IRremote by Armin Joachimsmeyer
 # STEP 1: Find Remote Codes
-1. Upload ____ sketch.
+1. Upload remoteCodes.ino sketch.
 2. Open Arduino Serial Monitor
 3. Set Baud rate to 9600
 4. Designate 2 buttons to trigger "Open" and "Close" and press them
-5. Write their Hex values and replace their values in the Arduino Sketch
+5. Write their Hex values and replace their values in the Arduino Sketch remoteControlGripper.ino
 # STEP 2: Upload Sketch
 1. Upload finalized code with hex values to Arduino.
 2. Press "open" and "close" buttons to trigger servo and gripper accordingly
