@@ -2,7 +2,6 @@ import serial
 import time
 import sys
 
-
 if len(sys.argv) < 2:
     print("Usage: python serialNEW.py [open|close|stop]")
     sys.exit(1)
