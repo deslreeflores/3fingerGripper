@@ -2,23 +2,23 @@
 This project demonstrates two methods for controlling a 3-finger dextrous gripper using an Arduino Uno and a 360° positional servo:
 
 1. **ROS 2 Serial Control (RS485)**:
-An earlier version of the project enabled **ROS 2** control over **RS485 serial communication**. A custom ROS 2 Python node published open and close commands to the Arduino, allowing integration with larger robotic systems and automation frameworks.
+An earlier version of the project enabled **ROS 2** control over **RS485 serial communication**. A custom ROS 2 Python node published open and close commands to the Arduino, allowing collaboration with larger robotic systems and automation frameworks
 
 2. **IR Remote Control**:
-The final design uses an **infrared** remote to open and close the gripper directly. The Arduino decodes the IR signals and drives the servo to open or close the gripper. This approach provides a simple, standalone solution without requiring a PC or ROS environment.
+The final design uses an **infrared** remote to open and close the gripper directly. The Arduino decodes the IR signals and drives the servo to open or close the gripper. This approach provides a simple, standalone solution without requiring a PC or ROS environment
 
-Both control methods are documented to showcase the flexibility of the system and the development process from PC-based to fully embedded control.
+Both control methods are documented to showcase the flexibility of the system and the development process from PC-based to fully embedded control
 
-The steps for the method using ROS 2 Serial Control will be presented first with hardware, firmware, and software, then followed by the IR Remote Control approach.
+The steps for the method using ROS 2 Serial Control will be presented first with hardware, firmware, and software, then followed by the IR Remote Control approach
 
 # ROS 2 SERIAL CONTROL GRIPPER (RS485)
 ---
-This project enables ROS2 control of a 3-finger adaptive gripper using an Arduino microcontroller and RS485 serial communication. The goal is to design, build, and test working system to receive open and close commands from a ROS 2 node, parsing them on the Arduino, and driving a servo motor accordingly.
+This project enables ROS2 control of a 3-finger adaptive gripper using an Arduino microcontroller and RS485 serial communication. The goal is to design, build, and test working system to receive open and close commands from a ROS 2 node, parsing them on the Arduino, and driving a servo motor accordingly
 # Overview
 The system bridges a gap in robotics research by providing a gripper that:
 - Uses standardized communication (RS485),
 - Integrates cleanly with ROS 2-based workflows,
-- And is built from affordable, off-the-shelf components.
+- And is built from affordable components
   
 ## Hardware Components: 
 - Arduino Uno
@@ -136,13 +136,13 @@ This section will explain how to control the gripper using an IR sensor with a p
 #### ARDUINO LIBRARIES TO INSTALL:
 IRremote by Armin Joachimsmeyer
 # STEP 1: Find Remote Codes
-1. Upload **remoteCodes.ino** sketch.
+1. Upload **remoteCodes.ino** sketch
 2. Open Arduino Serial Monitor
 3. Set Baud rate to 9600
-4. Designate 2 buttons to trigger "Open" and "Close" and press them
+4. Designate 2 buttons to trigger "Open" and "Close" and press
 5. Write their Hex values and replace their values in Arduino Sketch **remoteControlGripper.ino**
 # STEP 2: Upload Sketch
-1. Upload finalized code with hex values to Arduino.
+1. Upload finalized code with hex values to Arduino
 2. Press "open" and "close" buttons to trigger servo and gripper accordingly
 
 
